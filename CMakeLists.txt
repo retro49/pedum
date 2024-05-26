@@ -17,7 +17,6 @@ add_library(i_peparser
 
 target_link_libraries(i_peparser PUBLIC i_stream)
 add_executable(dumpit dumpit.c)
-add_executable(dbtest dbtest.c)
 
 target_link_libraries(dumpit PUBLIC i_stream)
 target_link_libraries(dumpit PUBLIC i_peparser)
