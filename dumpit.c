@@ -6,12 +6,27 @@
 #include "i_stream.h"
 #include "i_types.h"
 
-// just a prototype
 void parse_pe(const char*);
 void print_dos_header(i_pe_ctx* );
 void print_nt_header(i_pe_ctx* );
 void print_section_tables(i_pe_ctx* );
-void print_import_descriptor(i_pe_ctx* ); void print_import_function_iat(i_pe_ctx*); i_fstream* strm; int main(int argc, char** argv) { if(argc < 2){ fprintf(stdout, "usage: ./dumpit <file>\n"); return 1; } parse_pe(argv[1]); return 0; } void parse_pe(const char* path) { strm = i_fstream_open((const u8*)path); if(strm == NULL || *strm == NULL){ fprintf(stderr, "file not found: %s\n", path); exit(1);
+void print_import_descriptor(i_pe_ctx* ); 
+void print_import_function_iat(i_pe_ctx*);
+i_fstream* strm;
+int main(int argc, char** argv)
+{ 
+    if(argc < 2){ fprintf(stdout, "usage: ./dumpit <file>\n");
+        return 1;
+    } parse_pe(argv[1]);
+    return 0;
+} 
+
+void parse_pe(const char* path) 
+{ 
+    strm = i_fstream_open((const u8*)path);
+    if(strm == NULL || *strm == NULL){ 
+        fprintf(stderr, "file not found: %s\n", path);
+        exit(1);
     }
 
     i_pe_ctx* ctx = i_pe_ctx_new();
